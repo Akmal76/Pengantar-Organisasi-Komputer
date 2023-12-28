@@ -1,6 +1,15 @@
 # Pengantar Organisasi Komputer (POK)
 Pengantar Organisasi Komputer (POK) Tahun Ajaran 2022/2023 Semester Genap
 
+# Tugas Mandiri
+Tidak ada feedback dari asisten dosen.
+| Tugas Mandiri | Nilai |
+| -- | -- |
+| [Tugas Mandiri 1](TM1.pdf) | 98 |
+| [Tugas Mandiri 2](TM2.pdf) | 100 |
+| [Tugas Mandiri 3](TM3.pdf) | 93 |
+| [Tugas Mandiri 4](TM4.pdf) | 100 |
+
 # Lab MIPS (Sebelum UTS)
 Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
 <table>
@@ -23,3 +32,6 @@ Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
         </tr>
     </tbody>
 </table>
+
+# Lab AVR (Setelah UTS)
+TBA
