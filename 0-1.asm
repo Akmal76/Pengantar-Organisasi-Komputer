@@ -76,5 +76,6 @@ main:
 	syscall				# Eksekusi (mencetak string yang ada di $a0)
 	
 	# ------------------------------------ PROGRAM SELESAI ------------------------------------------
+	
 	li $v0, 10			# Exit command
 	syscall				# Eksekusi (mengakhiri program)

@@ -97,6 +97,7 @@ main:
 		syscall				# Eksekusi (mencetak integer yang ada di $a0)
 	
 	# ------------------------------------ PROGRAM SELESAI ------------------------------------------
+	
 	end:
 		li $v0, 10			# Exit command
 		syscall				# Eksekusi (mengakhiri program)
