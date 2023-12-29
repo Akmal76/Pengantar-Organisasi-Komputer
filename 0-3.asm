@@ -1,6 +1,6 @@
 # Akmal Ramadhan - POK B - 2206081534
 # Lab 0 - Robot
-# Latihan3 : Side Quest! (Bonus)
+# Latihan 3 : Side Quest! (Bonus)
 # Kode Asdos: KD
 
 # Inisialisasi data untuk string prompt program

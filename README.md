@@ -30,6 +30,13 @@ Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
         <tr>
             <td> <a href="0-3.asm"> Latihan 3 : Side Quest! (Bonus) </a> </td>
         </tr>
+        <tr>
+            <td rowspan=3> <a href="MIPS - Lab 1.pdf"> Lab 1 </a> </td>
+            <td> <a href="1-1.asm"> Latihan 1 : Restoran Peokra </a> </td>
+        </tr>
+        <tr>
+            <td> <a href="1-2.asm"> Latihan 2 : Sistem Pembayaran Restoran </a> </td>
+        </tr>
     </tbody>
 </table>
 
