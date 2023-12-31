@@ -45,8 +45,15 @@ Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
             <td> <a href="MIPS - Lab 3.pdf"> Lab 3 </a> </td>
             <td> <a href="3-1.asm"> Latihan 1 : Alphabetisme  </a> </td>
         </tr>
+        <tr>
+            <td> <a href="MIPS - Lab 4.pdf"> Lab 4 </a> </td>
+            <td> <a href="4-1.xlsx"> Latihan 1 : Reuni  </a> </td>
+        </tr>
     </tbody>
 </table>
+
+Catatan:
+Lab 4 menggunakan *assembler* [**`PathSim`**](PathSim/PathSim.jar). Pastikan sudah mengunduh `openjfx-11.0.2_windows-x64_bin-sdk.zip` (Windows) atau `openjfx-11.0.2_osx-x64_bin-sdk.zip` (macOS Intel Silicon) atau `openjfx-17.0.6_osx-aarch64_bin-sdk.zip` (macOS Apple Silicon) dan ekstrak dalam folder yang sama dengan `PathSim`.
 
 # Lab AVR (Setelah UTS)
 TBA
