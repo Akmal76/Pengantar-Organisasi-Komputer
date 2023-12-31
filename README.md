@@ -41,6 +41,10 @@ Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
             <td> <a href="MIPS - Lab 2.pdf"> Lab 2 </a> </td>
             <td> <a href="2-1.asm"> Latihan 1 : Bisreng Automotive Dealer  </a> </td>
         </tr>
+        <tr>
+            <td> <a href="MIPS - Lab 3.pdf"> Lab 3 </a> </td>
+            <td> <a href="3-1.asm"> Latihan 1 : Alphabetisme  </a> </td>
+        </tr>
     </tbody>
 </table>
 
