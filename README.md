@@ -56,4 +56,25 @@ Catatan:
 Lab 4 menggunakan *assembler* [**`PathSim`**](PathSim/PathSim.jar). Pastikan sudah mengunduh `openjfx-11.0.2_windows-x64_bin-sdk.zip` (Windows) atau `openjfx-11.0.2_osx-x64_bin-sdk.zip` (macOS Intel Silicon) atau `openjfx-17.0.6_osx-aarch64_bin-sdk.zip` (macOS Apple Silicon) dan ekstrak dalam folder yang sama dengan `PathSim`.
 
 # Lab AVR (Setelah UTS)
-TBA
+Tidak ada feedback dari asisten dosen.
+<table>
+    <thead>
+        <tr>
+            <th>Lab</th>
+            <th>Latihan</th>
+            <th>Nilai</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2> <a href="AVR - Lab 5.pdf"> Lab 5 </a> </td>
+            <td> <a href="Lab 5/5-1.asm"> Latihan 1 : Sama Tapi Beda? </a> </td>
+            <td rowspan=2>
+                100
+            </td>
+        </tr>
+        <tr>
+            <td> <a href="Lab 5/5-2.asm"> Latihan 2 : MTK </a> </td>
+        </tr>
+    </tbody>
+</table>

@@ -54,7 +54,7 @@ main:
 			addi $t0, $t0, 1	# Tambahkan counter ($t0++)
 			bne $t0, 5, upperLoop	# Jika $t0 != 5, lakukan loop	
 	
-	# Perulangan untuk mencari lowecase pada 5 karakter terakhir
+	# Perulangan untuk mencari lowercase pada 5 karakter terakhir
 	lowerLoop:
 		lb $t1, string ($t0)	# Load byte isi dari string[$t0] ke $t1 -> $t1: Karakter sekarang
 		
