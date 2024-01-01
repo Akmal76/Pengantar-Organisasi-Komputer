@@ -11,18 +11,22 @@ Tidak ada feedback dari asisten dosen.
 | [Tugas Mandiri 4](TM4.pdf) | 100 |
 
 # Lab MIPS (Sebelum UTS)
-Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
+Tidak ada feedback dari asisten dosen.
 <table>
     <thead>
         <tr>
             <th>Lab</th>
             <th>Latihan</th>
+            <th>Nilai</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td rowspan=3> <a href="MIPS - Lab 0.pdf"> Lab 0 </a> </td>
             <td> <a href="0-1.asm"> Latihan 1 : Bertemu dengan Robot </a> </td>
+            <td rowspan=3>
+                100
+            </td>
         </tr>
         <tr>
             <td> <a href="0-2.asm"> Latihan 2 : Jangan buat Robot Marah! </a> </td>
@@ -33,6 +37,9 @@ Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
         <tr>
             <td rowspan=2> <a href="MIPS - Lab 1.pdf"> Lab 1 </a> </td>
             <td> <a href="1-1.asm"> Latihan 1 : Restoran Peokra </a> </td>
+            <td rowspan=2>
+                100
+            </td>
         </tr>
         <tr>
             <td> <a href="1-2.asm"> Latihan 2 : Sistem Pembayaran Restoran </a> </td>
@@ -40,14 +47,23 @@ Tidak ada feedback dari asisten dosen. Semua nilai *full mark*.
         <tr>
             <td> <a href="MIPS - Lab 2.pdf"> Lab 2 </a> </td>
             <td> <a href="2-1.asm"> Latihan 1 : Bisreng Automotive Dealer  </a> </td>
+            <td>
+                100
+            </td>
         </tr>
         <tr>
             <td> <a href="MIPS - Lab 3.pdf"> Lab 3 </a> </td>
             <td> <a href="3-1.asm"> Latihan 1 : Alphabetisme  </a> </td>
+            <td>
+                100
+            </td>
         </tr>
         <tr>
             <td> <a href="MIPS - Lab 4.pdf"> Lab 4 </a> </td>
             <td> <a href="4-1.xlsx"> Latihan 1 : Reuni  </a> </td>
+            <td>
+                100
+            </td>
         </tr>
     </tbody>
 </table>
@@ -75,6 +91,13 @@ Tidak ada feedback dari asisten dosen.
         </tr>
         <tr>
             <td> <a href="Lab 5/5-2.asm"> Latihan 2 : MTK </a> </td>
+        </tr>
+        <tr>
+            <td> <a href="AVR - Lab 6.pdf"> Lab 6 </a> </td>
+            <td> <a href="Lab 6/6-1.asm"> Latihan 1 - Peokra Sequence </a> </td>
+            <td>
+                100
+            </td>
         </tr>
     </tbody>
 </table>
