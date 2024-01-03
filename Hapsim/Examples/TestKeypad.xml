@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<HAPSIM>
+   <General>
+      <Build>1966</Build>
+      <Position>
+         <top>269</top>
+         <bottom>639</bottom>
+         <left>339</left>
+         <right>987</right>
+      </Position>
+      <StayOnTop>0</StayOnTop>
+      <Target>ATmega16</Target>
+   </General>
+   <Views>
+      <Terminal>
+         <Name>Terminal1</Name>
+         <Position>
+            <top>0</top>
+            <left>318</left>
+            <width>318</width>
+            <height>267</height>
+         </Position>
+         <Interface>USART</Interface>
+         <localEcho>0</localEcho>
+         <redirectEnable>0</redirectEnable>
+         <Redirection>
+            <Port>COM1</Port>
+            <Baudrate>1200</Baudrate>
+            <Parity>None</Parity>
+            <Stopbits>1</Stopbits>
+            <Flowcontrol>None</Flowcontrol>
+         </Redirection>
+      </Terminal>
+      <Keypad>
+         <Name>Keypad1</Name>
+         <Position>
+            <top>0</top>
+            <left>0</left>
+         </Position>
+         <PortMapping>
+            <Strobe index="0">
+               <Port>PORTC</Port>
+               <Bit>4</Bit>
+            </Strobe>
+            <Strobe index="1">
+               <Port>PORTC</Port>
+               <Bit>5</Bit>
+            </Strobe>
+            <Strobe index="2">
+               <Port>PORTC</Port>
+               <Bit>6</Bit>
+            </Strobe>
+            <Strobe index="3">
+               <Port>PORTC</Port>
+               <Bit>7</Bit>
+            </Strobe>
+            <Input index="0">
+               <Port>PORTC</Port>
+               <Bit>0</Bit>
+            </Input>
+            <Input index="1">
+               <Port>PORTC</Port>
+               <Bit>1</Bit>
+            </Input>
+            <Input index="2">
+               <Port>PORTC</Port>
+               <Bit>2</Bit>
+            </Input>
+            <Input index="3">
+               <Port>PORTC</Port>
+               <Bit>3</Bit>
+            </Input>
+         </PortMapping>
+         <Buttons>
+            <Button index="0">
+               <Caption>1</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="1">
+               <Caption>4</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="2">
+               <Caption>7</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="3">
+               <Caption>Clear</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="4">
+               <Caption>2</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="5">
+               <Caption>5</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="6">
+               <Caption>8</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="7">
+               <Caption>0</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="8">
+               <Caption>3</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="9">
+               <Caption>6</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="10">
+               <Caption>9</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="11">
+               <Caption>Enter</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="12">
+               <Caption>Up</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="13">
+               <Caption>Down</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="14">
+               <Caption>Right</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+            <Button index="15">
+               <Caption>Left</Caption>
+               <PCKey>3452816845</PCKey>
+            </Button>
+         </Buttons>
+      </Keypad>
+   </Views>
+</HAPSIM>

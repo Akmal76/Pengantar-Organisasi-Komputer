@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<HAPSIM>
+   <General>
+      <Build>1387</Build>
+      <Position>
+         <top>44</top>
+         <bottom>436</bottom>
+         <left>44</left>
+         <right>417</right>
+      </Position>
+      <Target>ATmega8</Target>
+   </General>
+   <Views>
+      <Terminal>
+         <Name>USART</Name>
+         <Position>
+            <top>0</top>
+            <left>0</left>
+            <width>361</width>
+            <height>149</height>
+         </Position>
+         <Interface>USART</Interface>
+         <localEcho>0</localEcho>
+      </Terminal>
+      <Terminal>
+         <Name>I2C-Terminal</Name>
+         <Position>
+            <top>149</top>
+            <left>0</left>
+            <width>361</width>
+            <height>149</height>
+         </Position>
+         <Interface>TWI</Interface>
+         <localEcho>1</localEcho>
+      </Terminal>
+   </Views>
+</HAPSIM>

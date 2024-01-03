@@ -1,0 +1,479 @@
+<html>
+<head>
+<style type="text/css">
+body {margin-left: 20px}
+</style>
+</head>
+<body>
+<br/>
+<h2>HAPSIM - Helmi's AVR Periphery Simulator V2.20</h2>
+<h3>LCD (HD44780U), Terminal (USART and TWI), LEDs, Push-Buttons and Keypad Simulator Extension<br/>
+for the AVR Simulator of <a href="http://www.atmel.com/dyn/products/tools_card.asp?tool_id=2725" target="_blank">Atmel's AVR Studio 4</a></h3>
+<br/>
+<h3>Table of content:</h3>
+<ul>
+<a href="#hapsimfeatures">Features</a><br/>
+<a href="#hapsimlcdfeat">LCD features</a><br/>
+<a href="#hapsimlcdtut">How to use HAPSIM - Quickstart</a><br/>
+<a href="#hapsimtermtut">Terminal Simulator demo - USART to TWI Converter</a><br/>
+<a href="#hapsimtermt2">Terminal Simulation demo - redirection to PC's COM ports</a><br/>
+<a href="#hapsimkpadt">4x4 Keypad demo - TestKeypd application</a><br/>
+<a href="#hapsimissues">Known Issues and restrictions</a><br/>
+<a href="#hapsimthanks">Thanks and Tribute</a><br/>
+<a href="#hapsimdownload"><b style="font-size:120%">Download</b></a><br/>
+<a href="#hapsimprogram">Programmer's Tutorial</a><br/>
+<a href="#hapsimhistory">History</a><br/>
+<a href="#hapsimlicence">Licence Information</a><br/>
+<a href="#hapsimdonate">Donations</a><br/>
+<a href="#hapsimcontact">Contact</a><br/>
+</ul>
+<br/>
+<h3><a name="hapsimfeatures">Features:</a></h3>
+<ul>
+<li>supports Atmel AVR Studio 4, Version 4.10 up to Version 4.19, build 730.<br/>
+<b>AVR Studio Version 4.12.452 or higher strongly recommended!</b></li>
+<li>simultaniously simulates one or more of each of the following components:</li>
+<ul>
+<li>HD44780U compatible LC-Display with up to 40 x 2 or 20 x 4 characters.</li>
+<li>Pushbuttons connected to Input Port Pins.</li>
+<li>LEDs connected to Output Port Pins.</li>
+<li>Terminal connected to USART, UART or TWI(I2C) ports.</li>
+<li>4x4 Matrix Keypad.</li>
+<li>Watch Cycle Counter and Simulation Speed.</li>
+</ul>
+<li>easy configuration of the components.</li>
+<li>configuration files are stored in future-save XML format.</li>
+<li>target device selection with all devices supported by the AVR Simulator.</li>
+</ul>
+<br/>
+<h3><a name="hapsimlcdfeat">LCD features:</a></h3>
+<ul>
+<li>acts like a real HD44780U.</li>
+<li>up to 4 Display lines.</li>
+<li>8 to 40 characters per line.</li>
+<li>4bit or 8bit I/O mode support.</li>
+<li>supports the complete original character set (5 x 8 dot)<br/>
+  including all the 'weird' characters above 0x80 ;-)</li>
+<li>support for 8 user defined characters.</li>
+<li>supports blinking cursor, display shifting, cursor movement.</li>
+<li>selectable background color and display size (zoom factor).</li>
+<li>LCD write only mode: R/W line may be hardwired to '0', no portpin necessary.</li>
+</ul>
+<br/>
+<h3><a name="hapsimlcdtut">How to use HAPSIM - Quickstart with Demo-Application 'LCDTest':</a></h3>
+<ul>
+<p>This application demonstrates the usage of a 16x2 LCD control, a 4-Button control and a 8-LED control.</p>
+<li>Download and unzip <a href="#hapsimdownload">HAPSIM</a> and <a href="#hapsimdownload">LCDTest</a>.</li>
+<li>Build the LCDTest project by executing 'build.bat' (maybe edit the 'winavr' path first).</li>
+<li>Start AVR Studio 4</li>
+<li>In the Project Wizard select the 'lcdtest.elf' file and press 'next>>'</li>
+<li>Select Debug Platform: 'AVR Simulator' and Device: 'ATmega128'.</li>
+<li>Click 'Finish'.</li>
+<li>Start 'hapsim.exe'. It automatically detects the running AVR Studio and connects to it.</li>
+<li>Verify the connection to AVR Studio by clicking the Options menu:<br/>
+  The 'AVRStudioHook' Option must be checked.</li>
+<li>An LCD1 Window with a 16 x 2 LCD appears by default.</li>
+<li>Now open the 'LCDTest.xml' file in HAPSIM.<br/>
+  An LCD, a Button window and a LEDs window appear.<br/>
+  Each of them can be configurated by selecting it and then clicking the appropriate
+  Settings button or select '...Settings' from the 'Options' menu.<br/>
+  But that's not necessary now because they are already pre-configured for the LCDTest program.</li>
+<li>Hit the Run (F5) button in AVR Studio, sit back and watch as the LCD shows the welcome text.<br/>
+  It's quite slow, I know, but that's the simulation speed of the AVR Simulator with a little
+  slowdown by HAPSIM, of course...</li>
+<li>When the text display has finished, the first green LED in the LEDs window, named 'Mode0' lights up.<br/>
+  For explanation: the 4 green LEDs show the current mode of the Test program, I'll explain later.<br/>
+  The red LEDs below show the state of the 4 buttons of the buttons window.</li>
+<li>First, let's test the cursor modes of the LCD:<br/>
+  Press the first of the 4 buttons, the 'Cursor' button and hold it down. As you see the
+  'Button1' LED lights up!<br/>
+  Release the button. The underlined cursor appears at the current cursor position of the LCD which
+  should be at the 'T' of "Test" if you have not pushed any other buttons yet.<br/>
+  Press and release the 'Cursor' button once more and you get the blinking cursor with underline.<br/>
+  Next time you get the blinking cursor without underline. Once more and the cursor disappears.<br/>
+  Select a (visible) cursor of your choice for the following steps.</li>
+<li>Test mode 0: Press and release - slowly - the 'Right' button. On every edge of the button signal
+  one (increasing) character code is written to the display while the cursor moves to the right.<br/>
+  Note that you have to do it slowly, because the buttons are only polled by the AVR and the
+  character display generates a little delay. When you click too quick, the AVR will loose some
+  'button events'.<br/>
+  When the cursor reaches the right edge, the display shifts to the left in order to keep the cursor
+  visible at all time.<br/>
+  With the 'Left' button the (still increasing) character codes are written from right to left and
+  the display shifts to the right when the cursor reaches the left edge.</li>
+<li>Now switch to test mode 1 by pressing the 'Mode' button. (what a surprise ;-)<br/>
+  The 2nd green LED 'Mode1' lights up.</li>
+<li>Test mode 1: In this mode the cursor can be moved with the 'Left' and 'Right' button without writing
+  characters and without shifting the display. So you can also move the cursor out of the visible
+  display area.</li>
+<li>Press the 'Mode' button once more and you get to test mode 2: Now the display is shifted left and right
+  without moving the cursor.</li>
+<li>Finally switch to test mode 3: This is a test for the user defined characters, the "CGRAM Test" which
+  is displayed in the 2nd line. The first display line shows the character codes 0 to 15 which contains
+  the 8 user defined characters twice; character 0-7 are the same as 8-15.<br/>
+  At the first appearance you should see there random bit patterns (= the current content of the CGRAM)
+  except for the Copyright (c) Symbol which was defined during display of the intro text.<br/>
+  With the 'Left' and 'Right' button you can now write (increasing) bit patterns to increasing (right)
+  or decreasing (left) CGRAM addresses and watch them on the display.</li>
+<li>That's all! Pressing the 'Mode' button once more leads to the mode 0 again...</li>
+<table>
+<tr>
+<td valign=top><b>Note:</b></td><td>If you want to run this LCDTest program on a 'real' AVR you have to remove the definition of
+      FASTSIM by removing the line<br/>
+      "set DEBUG=-D FASTSIM" from the build.bat batchfile.<br/>
+      This #define shortens out the delay() function and therefore speeds up the simulation!</td>
+</tr>
+</table>
+</ul>
+<br/>
+<br/>
+<h3><a name="hapsimtermtut">Terminal Simulator demo - USART to TWI Converter:</a></h3>
+<p style="margin-left: 25px">
+The Terminal Simulation for USART and TWI is a new feature in HAPSIM V2.0.<br/>
+There is also a small test application for this new contol, namely a USART <-> TWI Converter
+which is used for this tutorial:
+</p>
+<ul>
+<li>Download and unzip <a href="#hapsimdownload">Usart2Twi</a> (and of course <a href="#hapsimdownload">HAPSIM</a> if you haven't done yet).</li>
+<li>Build usart2twi project by executing 'build.bat' which generates a '.elf' file for the ATMega8
+  this time for variety (and also to show the Device selection feature of HAPSIM ;-)
+<table>
+<tr><td align=left valign=top width=50>Note:</td><td>usart2twi is prepared to be built for ATMega128 too, by just running the 'build128.bat',
+ if you prefer...</td></tr>
+</table>
+<li>Start AVR Studio 4</li>
+<li>In the Project Wizard select the 'u2twi8.elf' file and press 'next>>'</li>
+<li>Select Debug Platform: 'AVR Simulator' and Device: 'ATmega8'.</li>
+<li>Click 'Finish'.</li>
+<li>Start 'hapsim.exe'. It automatically detects the running AVR Studio and connects to it.</li>
+<li>Verify the connection to AVR Studio by clicking the Options menu:<br/>
+  The 'AVRStudioHook' Option must be checked.</li>
+<li>Now open the 'Usart2Twi.xml' file in HAPSIM.
+  You get two Terminal windows. The upper one named USART is attached to the USART interface without
+  local echo because USART echo is done by the test application.<br/>
+  The other Terminal named 'I2C-Terminal' is attached - what a surprise - to the TWI interface
+  this time with local echo.</li>
+<li>Hit the Run (F5) button in AVR Studio, sit back and watch as the USART terminal shows the welcome text.</li>
+<li>When the text display has finished, you can start typing in any of the two windows and watch as the
+  text is echoed and appears in the other window... :-0</li>
+<li>Have fun!</li>
+</ul>
+<br/>
+<h3><a name="hapsimtermt2">Terminal Simulation demo - redirection to PC's COM ports:</a></h3>
+<p style="margin-left: 25px">
+As an alternative to the following <a href="http://www.cogito-ergo-sum.org/com0com-hapsim.shtml.en" target="_blank">here is a nice tutorial written by Oliver Müller</a> which uses the open-source <a href="http://com0com.sourceforge.net/" target="_blank">com0com</a> instead of Virtual Serial Port Kit, which I used below...  
+</p>
+<p style="margin-left: 25px">
+The used demo application <a href="#hapsimdownload">utrans</a> is quite simple: It uses both of the USART interfaces of an ATMega128:<br/>
+Whatever is received on USART0 is forwarded to USART1 and vice versa.<br/>
+For this demonstration we need two COM ports of our PC where we can redirect the AVR USARTs. At these COM ports we
+ connect nullmodem cables with terminal programs attached.<br/>
+So in fact we need two pairs of COM ports each pair looped with a serial cable! Due to the fact that it is unlikely
+ you have 4 COM ports available on your computer you can either use a second computer running the terminal programs
+  or you can use a virtual serial port driver like the <a href="http://www.fabulatech.com" target="_blank">Virtual Serial Port Kit</a> (unfortunately there's only a 15 days trial version for free) which I used here:
+</p>
+<ul>
+<li>Make sure everything is installed: AVR Studio, HAPSIM, utrans demo-app and Virtual Serial Port Kit.</li>
+<li>Create two virtual connections with the Virtual Serial Port Kit: COM3 to COM4 and COM5 to COM6<br/>
+For our application it's wise to enable bitrate emulation in the properties dialogs of the virtual connections.</li>
+<li>Run Build.Bat to build the application</li>
+<li>Start AVR Studio, load utrans.elf, select AVR Simulator and ATMega128.</li>
+<li>Start HAPSIM, load utrans.xml. You get two terminal windows: USART0 ==> COM3 and USART1 ==> COM5</li>
+<li>Start two terminal programs like HyperTerminal. Attach the first one to COM4 and the second one to COM6. Set the baudrates to 1200 bps for both terminals.</li>
+<p>Your first HyperTerminal is now virtually connected to USART0, your second one to USART1. Because of the utrans application with connects the both USARTs you have now the following connection between the two HyperTerminals:<br/>
+<b>HyperTerminal1 <-> COM4 <-> virtual connection <-> COM3 <-> HAPSIM <-> USART0 <-> AVR Simulator running utrans app
+<-> USART1 <-> HAPSIM <-> COM5 <-> virtual connection <-> COM6 <-> HyperTerminal2!</b></p>
+<li>Run the application in AVR Studio. You should see the short welcome text 'USART transceiver!' in all of the four terminal windows!</li>
+<li>Now let's play: everything you type into one HyperTerminal will appear on the other one and vice versa.</li>
+<li>But you are not limited to typing text. You can use every feature the terminal program provides.</li>
+<li>Send a text file.</li>
+<li>Use the 'Capture text' option of HyperTerminal to log the output of your AVR application to a file.</li>
+<li>How about a file transfer using Zmodem protocol? It works! Cool, uhh? Just make sure you take a short file. Otherwise you will get a timeout of the sender Terminal because the effective transfer speed is much slower than 1200 bps due to the AVR Simulator.</li>
+</ul>
+<br/>
+<h3><a name="hapsimkpadt">4x4 Keypad demo - TestKeypd application:</a></h3>
+<p style="margin-left: 25px">
+<a href="#hapsimdownload">TestKeypad</a> is an application for Atmega16 to test a 4 x 4 keypad connected to PortC.<br/>
+The program detects the pressed key by reading the row and column. The row is read from the input lines by setting the strobe lines to all 0. Afterwards the column is read by reverting the data direction, set all input lines (now output) to 0 and read the column from the strobe lines (now input). Open input lines are pulled to high by using the AVR internal pullups.<br/>
+To prevent key bounce keypadtest starts a 25ms timer and retests the button is still pressed.
+<br/>
+</p>
+<p style="margin-left: 25px">
+<b>Running TestKeypad using HAPSIM</b>
+</p>
+<ul>
+<li>Run Build.Bat to build the application</li>
+<li>Open testkeypd.elf in the AvrStudio Project Wizard and select AVR Simulator with ATmega16 as target.</li>
+<li>Start HAPSIM and open TestKeypad.xml</li>
+<li>Run the application in AvrStudio Simulator.</li>
+</ul>
+<p style="margin-left: 25px">
+The Terminal screen will display a message "Test Keypad Program"<br/>
+Press the buttons on the keypad or use the Keyboard to activate the hotkey links.<br/>
+The keys pressed are echoed to the terminal screen.
+</p>
+<br/>
+<h3><a name="hapsimissues">Known Issues and restrictions:</a></h3>
+<ul>
+<li>no timing conditions are checked or considered.<br/>
+  e.g. the LCD even works if you don't wait for the busy bit to clear.</li>
+<li>DDR (data direction) programming of the AVR ports are neither checked nor considered.</li>
+<li>avoid double connections, e.g. connecting the same port pin to the enable pin of the LCD
+  and to a LED will cause problems.</li>
+<li>don't change the port settings (of any controls) during a running Debug session.<br/>
+  Hit the Break Button in the AVR Studio first! Anyway you don't have to stop the debugger completely.</li>
+<li>no memory mapped IO support for the LCD.</li>
+<li>TWI terminal only supports master-transmit and slave-receive modes
+  and doesn't check the slave-address.</li>
+<li>incomplete PartDescriptionFiles for ATMega8 (maybe others too)
+  supplied with AVR Studio Versions below 4.11, resulting in TWI terminal problems.</li>
+<li>USART2 and USART3 on the "big" devices ATmegaXXX0 don't support interrupt handling because of a bug in the AVR Simulator of AVR Studio 4.12.490 and below.<br/>
+  Hopefully this will be corrected by Atmel sometime.</li>
+</ul>
+<br/>
+<h3><a name="hapsimthanks">Thanks and Tribute to:</a></h3>
+<p style="margin-left: 25px">
+Andrew Macdonald for programming the 4x4 Keypad control and the corresponding demo-app "TestKeypad", <a href="mailto:andrew.macdonald@au.fujitsu.com">andrew.macdonald@au.fujitsu.com</a>.<br/>
+Peter Fleury for his LCD library, used by the LCDTest program, <a href="http://jump.to/fleury" target="_blank">http://jump.to/fleury</a><br/>
+Iuri Apollonio for the 'CoolMenu' Support,
+ <a href="http://www.codeguru.com/Cpp/controls/menu/bitmappedmenus/article.php/c177/" target="_blank">http://www.codeguru.com/Cpp/controls/menu/bitmappedmenus/article.php/c177/</a><br/>
+Maurizio Pisano for the MessageBoxTimeout API, <a href="http://www.codeproject.com/cpp/MessageBoxTimeout.asp" target="_blank">http://www.codeproject.com/cpp/MessageBoxTimeout.asp</a><br/>
+James Clark for his Expat XML parser library, <a href="http://www.libexpat.org/" target="_blank">http://www.libexpat.org</a> and<br/>
+Tim Smith for the C++ Wrappers for the Expat XML Parser, <a href="http://www.codeproject.com/soap/expatimpl.asp" target="_blank">http://www.codeproject.com/soap/expatimpl.asp</a><br/>
+Oliver Müller for his tutorial about "Simulation of Serial Connections in AVR Studio 4", <a href="http://www.cogito-ergo-sum.org/com0com-hapsim.shtml.en" target="_blank">http://www.cogito-ergo-sum.org/com0com-hapsim.shtml.en</a><br/>
+And last but not least, <a href="http://www.atmel.com" target="_blank">Atmel</a> for their <a href="http://www.atmel.com/products/avr/" target="_blank">AVR microcontrollers</a> which are the reason for all this ;-)<br/>
+and of course for their free AVR Studio Software, look at <a href="http://www.atmel.no/beta_ware/" target="_blank">http://www.atmel.no/beta_ware/</a> for the latest (Beta-)Releases.<br/>
+</p>
+<br/>
+<h3><a name="hapsimdownload">Download:</a></h3>
+<p style="margin-left: 25px">
+Look at <a href="http://www.helmix.at/hapsim/index.htm#hapsimdownload">http://www.helmix.at/hapsim</a>
+</p>
+<br/>
+<table cellpadding=5 style="margin-left: 25px">
+<tr>
+<td valign=top><b>Note:</b></td>
+<td>Some of these Demo-Applications are using the #define FASTSIM to speed up the simulation.<br/>
+If you want to run them on 'real' AVR hardware you have to remove the definition of
+      FASTSIM by removing the line<br/>
+      "set DEBUG=-D FASTSIM" from the build.bat batchfiles!</td>
+</tr>
+</table>
+<br/>
+<h3><a name="hapsimprogram">Programmer's Tutorial:</a></h3>
+<p style="margin-left: 25px">
+Some internal information on HAPSIM:
+<ul>
+<li>MFC VC++6.0 application.</li>
+<li>document/view architecture where every control (LCD, Buttons, LEDs, ...) has it's own DocTemplate so it's quite modular and simple to add new controls.</li>
+<li>the interface to AvrStudio is done by a rather crude hooking mechanism. But this functionality is centralized so every control view gets windows messages for the desired AVR Port changes and may set AVR Input Ports via simple API calls.</li>
+</ul>
+</p>
+<p style="margin-left: 25px">
+If you want to add new functionallity and therefore collaborate in the further development of HAPSIM then read this <a href="project.htm">HAPSIM Programmer's Tutorial</a>.
+</p>
+<br/>
+<h3><a name="hapsimhistory">History:</a></h3>
+<ul style="margin-left: 25px">
+V2.20 - 16.2.2012<br/>
+<br/>
+<ul>
+<li>Crash with ATtiny devices (without UART) fixed.</li>
+<li>Corrupted port scan table fixed.</li>
+<li>Ignore port writes with unchanged content (performance improvement).</li>
+</ul>
+<br/>
+V2.19 - 21.1.2012<br/>
+<br/>
+<ul>
+<li>4x4 Keypad Control redesigned and fixed. bidirectional access of row and column lines.</li>
+</ul>
+<br/>
+V2.18 - 29.10.2011<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio Version 4.19, build 730</li>
+<li>4x4 Keypad Control redesigned and fixed.</li>
+</ul>
+<br/>
+V2.17 - 6.12.2009<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio Version 4.18, build 684</li>
+<li>Device list handling fixed (search 'simulatorparts.cac' on the right place).</li>
+</ul>
+<br/>
+V2.16 - 7.9.2009<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio Version 4.17, build 666 (the number of the beast ;-)</li>
+<li>Crashes with the "big" devices ATmega256x fixed.</li>
+<li>More informative error message on missing device list.</li>
+</ul>
+<br/>
+V2.15 - 23.5.2009<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio Version 4.16 SP1, build 638</li>
+</ul>
+<br/>
+V2.14 - 6.12.2008<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio Version 4.15 Final, build 623</li>
+</ul>
+<br/>
+V2.13 - 25.10.2008<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio Version 4.15, build 619 (Beta)</li>
+</ul>
+<br/>
+V2.12 - 18.3.2008<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio Version 4.14, build 584 (RC1)<br/>
+<b>Note:</b> The new AVR Simulator 2 is (still) not supported!<br/>
+<b>Note (24.10.2008):</b> Support for Versions up to 4.14.603 (SP1) also confirmed!</li>
+</ul>
+<br/>
+V2.11 - 18.2.2008<br/>
+<br/>
+<ul>
+<li>Terminal-bug on multicore machines - repetitive transfer of same characters - fixed!<br/>
+The processor affinity mask for hapsim is set identical to AVRStudio.<br/>
+AVRStudio only uses one core! Thanks to Heiko Nocon for analyzing the problem!</li>
+</ul>
+<br/>
+V2.10 - 5.5.2007<br/>
+<br/>
+<ul>
+<li>New control "AvrCycleView" for watching the Cycle Counter and Simulation Speed added.</li>
+<li>Output of Error messages on Windows 2000 fixed.</li>
+<li>"Language-Mix" german-english of some buttons fixed (all buttons should have english names now)!</li>
+<li>Support of the SPI registers added as a prerequisite for an upcoming SPI terminal control.</li>
+<b>Note (9.1.2008):</b> Support for Version 4.13.571 (SP2) also confirmed!</li>
+</ul>
+<br/>
+V2.09 - 20.2.2007<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio up to Version 4.13, build 524 (Release candidate)<br/>
+<b>Note:</b> The new AVR Simulator V2 (Preview) is not supported!<br/>
+<b>Note (2.3.2007):</b> Support for Version 4.13.528 (Release) also confirmed!</li>
+</ul>
+<br/>
+V2.08 - 10.10.2006<br/>
+<br/>
+<ul>
+<li>Bugfix: Terminal control crashes when no COM ports available!</li>
+</ul>
+<br/>
+V2.07 - 16.8.2006<br/>
+<br/>
+<ul>
+<li>Support of 4 line LCDs with up to 20 characters per line.</li>
+<li>Support for the "big" devices ATmega1280 and ATmega2560 with up to 11 I/O registers and 4 USARTS.</li>
+<li>Update for AVR Studio up to Version 4.12.490 (SP3)<br/>
+<b>Note (22.10.2006):</b> Support for Version 4.12.498 (SP4) also confirmed!</li>
+<li>Handling of 'active low' pushbuttons corrected.</li>
+</ul>
+<br/>
+V2.06 - 21.10.2005<br/>
+<br/>
+<ul>
+<li>4x4 Keypad Control added by Andrew Macdonald.</li>
+<li>Terminal Emulation improvements: Redirection to COM ports.</li>
+<li>Update for AVR Studio up to Version 4.12.456 (RC4)</li>
+<li>Support for older Studio Versions than 4.11.404 slowly discontinued.</li>
+<li>Bugfixes (and probably some new bugs added :-)</li>
+</ul>
+<br/>
+V2.05 - 15.3.2005<br/>
+<br/>
+<ul>
+<li>Update for AVR Studio 4.11 Service Pack 1, Build 404 and 405.<br/>
+<i>Remark 25.3.2005: V2.05 also supports Service Pack 2, Build 406!</i></li>
+<li>Performance improvement!</li>
+</ul>
+<br/>
+V2.04 - 3.3.2005<br/>
+<br/>
+<ul>Update for AVR Studio 4.11 Servicepack 1, build 403.</ul>
+<br/>
+V2.03 - 10.2.2005<br/>
+<br/>
+<ul>'Stay On Top' - Option added.</ul>
+<br/>
+V2.02 - 7.2.2005<br/>
+<br/>
+<ul><li>Trinary encoding support for Button Control<br/>
+This feature allows to connect two buttons at one I/O line.<br/>
+For details see AVR Freaks Design Note #044 by Luke Sangalli<br/>
+<a href="http://www.avrfreaks.net/index.php?module=FreaksTools&func=viewItem&item_id=407" target="_blank">Using Trinary Encoding to Reduce Pin Wastage</a></li>
+<li>Configuration file loading via parameter at program start.</li>
+</ul>
+<br/>
+V2.01 - 1.2.2005<br/>
+<br/>
+<ul><li>UART support for devices like ATMega163 (UART instead of USART).</li>
+<li>GDI resource leakage fixed.</li>
+<li>PartDescriptionFiles: handling of '$' as hex identifier added.</li>
+</ul>
+<br/>
+V2.00 - 26.1.2005<br/>
+<br/>
+<ul><li>Terminal simulation for USART and TWI(I2C) implemented.</li>
+
+  <li>Target device selection.</li>
+
+  <li>LCD write only mode:
+    R/W line may be hardwired to '0', no portpin necessary.</li>
+
+  <li>Configuration file format changed to XML.</li>
+
+  <li>Update for AVR Studio 4.11, build 401.</li></ul>
+<br/>
+V1.02 - 6.9.2004<br/>
+<br/>
+  <ul>LCD supports up to 40 characters per line.</ul>
+
+<br/>
+V1.01 - 28.8.2004<br/>
+<br/>
+
+  <ul>Update for AVR Studio 4.10, build 356.</ul>
+
+<br/>
+V1.0 - 23.8.2004<br/>
+<br/>
+
+  <ul>First Release!</ul>
+</ul>
+<br/>
+<h3><a name="hapsimlicence">Licence Information:</a></h3>
+<p style="margin-left: 25px">
+HAPSIM is both Freeware and Open Source!<br/>
+Everyone can use it without any restrictions.<br/>
+And everyone is invited to extend the functionality of HAPSIM by contributing new controls or features.<br/>
+In this case I only want to receive the modifications aswell and get the permission to add them completely, or partly, into my "official" HAPSIM release.<br/>
+The name of the contributing author is then mentioned on the HAPSIM homepage and/or in the program itself.
+</p>
+<h3><a name="hapsimdonate">Donations:</a></h3>
+<p style="margin-left: 25px">
+If you simply like HAPSIM, or even increase your productivity and commercial success by using it,
+donations to a poor, underpaid programmer are very much appreciated ;-)
+</p>
+<p style="margin-left: 25px">
+Look at <a href="http://www.helmix.at/hapsim/index.htm#hapsimdonate">http://www.helmix.at/hapsim</a>
+</p>
+<br/>
+<h3><a name="hapsimcontact">Contact:</a></h3>
+<p style="margin-left: 25px">Please e-mail any suggestions, complaints and other feedback to<br/>
+<a href="mailto:helmix@gmx.at">helmix@gmx.at</a><br/>
+<a href="http://www.helmix.at/hapsim" target="_top">http://www.helmix.at/hapsim</a><br/>
+<br/>
+Helmut Wallner, 16.2.2012<br/>
+</p>
+</body>
+</html>
