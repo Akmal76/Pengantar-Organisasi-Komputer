@@ -106,5 +106,12 @@ Tidak ada feedback dari asisten dosen.
                 100
             </td>
         </tr>
+        <tr>
+            <td> <a href="AVR - Lab 8.pdf"> Lab 8 </a> </td>
+            <td> <a href=""> TBA </a> </td>
+            <td>
+                90
+            </td>
+        </tr>
     </tbody>
 </table>
